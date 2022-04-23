@@ -10,10 +10,6 @@ def get_exchange_rate():
     response = requests.get(full_url)
     json_payload = response.text
     dict_payload = json.loads(json_payload)
-
-    print(response.status_code)
-    print(json_payload)
-    print(dict_payload)
     return dict_payload
 
 
