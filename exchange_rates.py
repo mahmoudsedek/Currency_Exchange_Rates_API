@@ -10,6 +10,7 @@ import json
 
 
 def get_argument() -> argparse.Namespace:
+    """function takes args from the user with the targeted directory for the partioned data"""
     parser = argparse.ArgumentParser("exchange rate script")
     parser.add_argument("-d", "--dir", default=".", help="directory of the file for the exchange rate, default is current directory")
     args = parser.parse_args()
@@ -17,6 +18,7 @@ def get_argument() -> argparse.Namespace:
 
 
 def get_exchange_rates() -> dict:
+    """function to call the API and get latest exchange rates for specific symbols"""
     full_url = api_configs.URL + api_configs.TOKEN + "&base=" + api_configs.BASE + "&symbols=" + api_configs.SYMBOLS
     try:
         response = requests.get(full_url)
@@ -29,8 +31,8 @@ def get_exchange_rates() -> dict:
     return dict_payload
 
 
-# to be explained
 def convert_rates(data: dict) -> tuple:
+    """function to work-around the currency convertion as the free API subsription doesn't allow to change the base"""
     data = get_exchange_rates()
     base = "1"
     usd = str(1 / Decimal(data["rates"]["EGP"]))
@@ -44,6 +46,7 @@ def convert_rates(data: dict) -> tuple:
 
 
 def write_partitioned_data(partition_folder_path: str, partition_file_path: str, header: list, row: list) -> None:
+    """function to check/write data in directories/files"""
     file_exist = os.path.isfile(partition_file_path)
     os.makedirs(partition_folder_path, exist_ok=True)
     if not file_exist:
