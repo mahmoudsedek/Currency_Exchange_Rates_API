@@ -11,5 +11,5 @@ This repo aims to retrieve some currencies exchange rates from the "openexchange
       -Write the data (in a partitioned way: month/day) after checking & validating the dir/file exists
       
 # Steps
->>> put your tokens/app_id from the  "openexchangerate" API websites in the api_configs.py >>>
+>>> put your tokens/app_id from the  "openexchangerate" API websites in the api_configs.py
 That's it! you see how easy that repo works xD
