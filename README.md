@@ -1,6 +1,6 @@
 # Currency_Exchange_Rates_API
 
-This repo aims to retrieve some currencies exchange rates from the "openexchangerate" API.
+This repo aims to retrieve some currencies exchange rates from the "https://openexchangerates.org/" API.
 
 # Architecture Description
     1.api_configs.py contains some configs related the API, base currency, symbols, and decimal precision for saved data
