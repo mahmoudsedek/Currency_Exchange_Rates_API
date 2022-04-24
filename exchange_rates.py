@@ -1,4 +1,4 @@
-import api_config
+import api_configs
 import requests
 import argparse
 from datetime import datetime
@@ -17,7 +17,7 @@ def get_argument() -> argparse.Namespace:
 
 
 def get_exchange_rates() -> dict:
-    full_url = api_config.URL + api_config.TOKEN + "&base=" + api_config.BASE + "&symbols=" + api_config.SYMBOLS
+    full_url = api_configs.URL + api_configs.TOKEN + "&base=" + api_configs.BASE + "&symbols=" + api_configs.SYMBOLS
     try:
         response = requests.get(full_url)
     except requests.exceptions.RequestException as e:
@@ -45,7 +45,7 @@ def convert_rates(data: dict) -> tuple:
 
 def write_partitioned_data(partition_folder_path: str, partition_file_path: str, header: list, row: list) -> None:
     file_exist = os.path.isfile(partition_file_path)
-    os.makedirs(os.path.dirname(partition_folder_path), exist_ok=True)
+    os.makedirs(partition_folder_path, exist_ok=True)
     if not file_exist:
         with open(partition_file_path, "a+", encoding='UTF8', newline='') as f:
             csv_writer = csv.writer(f)
@@ -65,7 +65,7 @@ def write_partitioned_data(partition_folder_path: str, partition_file_path: str,
 def main():
     args = get_argument()
     dir = args.dir
-    getcontext().prec = api_config.PRECISION
+    getcontext().prec = api_configs.PRECISION
     exchange_rates = get_exchange_rates()
     header, row, time_stamp = convert_rates(exchange_rates)
     partition_folder = str(time_stamp.year) + "-" + str(time_stamp.month)
