@@ -12,7 +12,7 @@ import json
 def get_argument() -> argparse.Namespace:
     """function takes args from the user with the targeted directory for the partioned data"""
     parser = argparse.ArgumentParser("exchange rate script")
-    parser.add_argument("-d", "--dir", default=".", help="directory of the file for the exchange rate, default is current directory")
+    parser.add_argument("-d", "--dir", default=".", help="directory of the file for the exchange rates, default is current directory")
     args = parser.parse_args()
     return args
 
@@ -35,8 +35,8 @@ def convert_rates(data: dict) -> tuple:
     """function to work-around the currency convertion as the free API subsription doesn't allow to change the base"""
     data = get_exchange_rates()
     base = "1"
-    usd = str(1 / Decimal(data["rates"]["EGP"]))
-    eur = str((1 / Decimal(data["rates"]["EGP"])) * Decimal(data["rates"]["EUR"]))
+    usd = str(1 / Decimal(data["rates"]["EGP"])) #EGP to USD
+    eur = str((1 / Decimal(data["rates"]["EGP"])) * Decimal(data["rates"]["EUR"])) #EGP to EUR
     epoch = data["timestamp"]
     time_stamp = datetime.fromtimestamp(epoch)
     str_time_stamp = str(datetime.fromtimestamp(epoch))
