@@ -15,5 +15,5 @@ This repo aims to retrieve some currencies exchange rates from the "https://open
     2. python exchange_rates.py (without passing any arguments will create the partioned_data folder in the cwd
     3. if you wanna pass sepcific directory use: python exchange_rates.py --dir directory_path
     4. or you can run it this way as well: pytohn exchange_rates.py -d directory_path <br />
-    <B>Note that if you passed (if you passed any number/letter it'll create a directory with that name and within this directory you'll have your data in our format: YYYY-M)
+    **Note that if you passed (if you passed any number/letter it'll create a directory with that name and within this directory you'll have your data in our format: YYYY-M)**
 >>> That's it! you see how easy that repo works xD
